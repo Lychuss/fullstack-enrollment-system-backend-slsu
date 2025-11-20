@@ -37,23 +37,26 @@ import { pool } from "../database/connection.js"; // Import PostgreSQL connectio
 // Function: addAccount
 // Purpose: Insert a new student record into the database
 // ------------------------------------------------------
-export const addAccount = (
-  studentId,     // Unique student ID
-  studentName,   // Full name of the student
-  gender,        // Gender
-  dob,           // Date of birth
-  email,         // Email address (must be unique)
-  phone,         // Phone number
-  address,       // Student's address
-  program_id,    // Foreign key linking to a program table
-  password       // Hashed password for security
-) => {
+
+export const addAccount = (user) => {
   // Execute a parameterized SQL INSERT query to prevent SQL injection
-  return pool.query(
-    `
-      INSERT INTO student 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    `,
-    [studentId, studentName, gender, dob, email, phone, address, program_id, password]
-  );
+
+  const query = `INSERT INTO student VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+
+  const student = [
+    user.student_id,
+    user.first_name,
+    user.last_name,
+    user.gender,
+    user.dob,
+    user.address,
+    user.contact,
+    user.course,
+    user.year_level,
+    user.date_enrolled,
+    user.username,
+    user.password,
+  ];
+
+  return pool.query(query, student);
 };

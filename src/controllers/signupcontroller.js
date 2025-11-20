@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Import the password hashing utility function to securely hash user passwords
-import { hashPass } from '../../utils/utility.js';
+import { hashPass } from '../utils/utility.js';
 
 // Import a service that checks if an email is already used by another account
 import { checkEmailAvail } from '../services/signupService.js';
@@ -10,10 +10,10 @@ import { checkEmailAvail } from '../services/signupService.js';
 // Import a function that inserts a new user record into the database
 import { addAccount } from '../repository/userRepository.js';
 
+import Student from '../models/student.model.js';
+
 // Create an Express router to group all signup-related routes
 const signupController = express.Router();
-
-const Student = require('../models/student.model.js');
 
 // Define the POST route for user registration at /enrollment/auth/signup
 signupController.post('/enrollment/auth/signup', async (req, res) => {
@@ -24,7 +24,7 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
     } = req.body;
 
     // Step 1: Check if the email is already taken using the signupService function
-    const emailAvailable = await checkEmailAvail(email);
+    const emailAvailable = await checkEmailAvail(username);
 
     // If the email is already registered, send a 409 Conflict response
     if (!emailAvailable) {

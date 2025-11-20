@@ -1,6 +1,6 @@
 import { createToken } from "../middlewares/authentication.js";
 import { getStudentId } from "../repository/studentRepository.js";
-import { encryption } from "../../utils/utility.js";
+import { encryption } from "../utils/utility.js";
 import { checkEmail } from "../repository/studentRepository.js";
 
 

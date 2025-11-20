@@ -28,7 +28,7 @@ import { pool } from "../database/connection.js"; // Import PostgreSQL connectio
 export async function getStudentId(email) {
   // Run a parameterized SQL query to prevent SQL injection
   return await pool.query(
-    'SELECT student.student_id FROM student WHERE student.email = $1',
+    'SELECT student.student_id FROM student WHERE student.username = $1',
     [email]
   );
   // Returns a QueryResult object with rows[] and rowCount
@@ -41,7 +41,7 @@ export async function getStudentId(email) {
 export const checkEmail = (email) => {
   // Use parameterized query to securely check email existence
   return pool.query(
-    'SELECT * FROM student WHERE student.email = $1',
+    'SELECT * FROM student WHERE student.username = $1',
     [email]
   );
   // Returns a QueryResult that can be used to verify if rowCount > 0
