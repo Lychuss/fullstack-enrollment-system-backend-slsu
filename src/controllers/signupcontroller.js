@@ -17,16 +17,8 @@ const signupController = express.Router();
 signupController.post('/enrollment/auth/signup', async (req, res) => {
   try {
     // Extract the user input fields from the request body
-    const { 
-      studentId, 
-      studentName, 
-      gender, 
-      dob, 
-      email, 
-      phone, 
-      address, 
-      program_id, 
-      password 
+    const { student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
+        date_enrolled, username, password
     } = req.body;
 
     // Step 1: Check if the email is already taken using the signupService function
@@ -42,15 +34,8 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
 
     // Step 3: Insert the new user record into the database via the repository function
     const data = await addAccount(
-      studentId,
-      studentName,
-      gender,
-      dob,
-      email,
-      phone,
-      address,
-      program_id,
-      hashedPassword
+        student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
+        date_enrolled, username, password
     );
 
     // Step 4: Check if the insert operation affected one row — meaning the signup was successful
