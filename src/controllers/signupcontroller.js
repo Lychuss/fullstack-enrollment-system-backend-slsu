@@ -13,6 +13,8 @@ import { addAccount } from '../repository/userRepository.js';
 // Create an Express router to group all signup-related routes
 const signupController = express.Router();
 
+const Student = require('../models/student.model.js');
+
 // Define the POST route for user registration at /enrollment/auth/signup
 signupController.post('/enrollment/auth/signup', async (req, res) => {
   try {
@@ -32,11 +34,11 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
     // Step 2: Hash the user's password before saving to the database for security
     const hashedPassword = await hashPass(password);
 
+    const student = new Student( student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
+        date_enrolled, username, hashedPassword);
+
     // Step 3: Insert the new user record into the database via the repository function
-    const data = await addAccount(
-        student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
-        date_enrolled, username, password
-    );
+    const data = await addAccount(student);
 
     // Step 4: Check if the insert operation affected one row — meaning the signup was successful
     if (data.rowCount === 1) {
