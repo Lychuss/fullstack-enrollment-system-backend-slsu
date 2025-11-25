@@ -10,7 +10,7 @@ import { checkEmailAvail } from '../services/signupService.js';
 // Import a function that inserts a new user record into the database
 import { addAccount } from '../repository/userRepository.js';
 
-import Student from '../models/student.model.js';
+import Admin from '../models/admin.model.js';
 
 // Create an Express router to group all signup-related routes
 const signupController = express.Router();
@@ -19,8 +19,8 @@ const signupController = express.Router();
 signupController.post('/enrollment/auth/signup', async (req, res) => {
   try {
     // Extract the user input fields from the request body
-    const { student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
-        date_enrolled, username, password
+    const { admin_id, first_name, last_name, gender, dob, address, contact, 
+      course, username, password
     } = req.body;
 
     // Step 1: Check if the email is already taken using the signupService function
@@ -34,11 +34,11 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
     // Step 2: Hash the user's password before saving to the database for security
     const hashedPassword = await hashPass(password);
 
-    const student = new Student( student_id, first_name, last_name, gender, dob, address, contact, course, year_level, 
-        date_enrolled, username, hashedPassword);
+    const admin = new Admin( admin_id, first_name, last_name, gender, dob, address, contact, 
+      course, username, hashedPassword);
 
     // Step 3: Insert the new user record into the database via the repository function
-    const data = await addAccount(student);
+    const data = await addAccount(admin);
 
     // Step 4: Check if the insert operation affected one row — meaning the signup was successful
     if (data.rowCount === 1) {
