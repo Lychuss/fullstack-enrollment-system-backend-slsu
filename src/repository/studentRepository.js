@@ -46,3 +46,32 @@ export const checkEmail = (email) => {
   );
   // Returns a QueryResult that can be used to verify if rowCount > 0
 };
+
+export const enrollStudent = (user) => {
+  // Execute a parameterized SQL INSERT query to prevent SQL injection
+
+  const query = `INSERT INTO student VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+
+  const admin = [
+    user.student_id,
+    user.first_name,
+    user.last_name,
+    user.gender,
+    user.dob,
+    user.address,
+    user.contact,
+    user.course,
+    user.year_level,
+    user.date_enrolled,
+    user.username,
+    user.password
+  ];
+
+  return pool.query(query, admin);
+};
+
+export const getDataStudent = () => {
+  return pool.query(
+    'SELECT * FROM enrollment'
+  );
+};
