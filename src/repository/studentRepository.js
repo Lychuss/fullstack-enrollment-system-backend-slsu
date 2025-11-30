@@ -41,7 +41,7 @@ export async function getStudentId(email) {
 export const checkEmail = (email) => {
   // Use parameterized query to securely check email existence
   return pool.query(
-    'SELECT * FROM admin WHERE admin.username = $1',
+    'SELECT admin.password FROM admin WHERE admin.username = $1',
     [email]
   );
   // Returns a QueryResult that can be used to verify if rowCount > 0
