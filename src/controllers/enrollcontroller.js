@@ -1,5 +1,5 @@
 import express from "express";
-import { enrollStudent, getDataStudent } from "../repository/studentRepository.js";
+import { enrollStudent, getDataStudent, updateData } from "../repository/studentRepository.js";
 import Enrollment from "../models/enrollment.model.js";
 
 const enrollcontroller = express.Router();
@@ -39,10 +39,25 @@ enrollcontroller.get('/enrollmentsystem/slsu/data/', async (req, res) => {
         console.log(err);
         return res.status(404).json({ message: 'There is an error in getting your data', success: false });
     }
-   
-    
-
 });
 
+enrollcontroller.put('/enrollmentsystem/slsu/data/:id', async(req, res) => {
+    const { id } = req.params;
+
+     const { student_id, course, year_level, enrolled, document_id } = req.body;
+
+    try {
+
+        const updatedStatus = await updateData(id, student_id, course, year_level, enrolled, document_id);
+
+        const updatedStudent = updatedStatus.rows;
+
+        return res.status(200).json({ message: 'Student updated successfully', success: true, data: updatedStudent});
+
+    } catch(err) {
+        console.log(err);
+        return res.status(404).json({ message: 'There is an error in updating your data', success: false })
+    }
+});
 
 export default enrollcontroller;

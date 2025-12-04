@@ -75,3 +75,10 @@ export const getDataStudent = () => {
     'SELECT * FROM enrollment'
   );
 };
+
+export const updateData = (id, student_id, course, year_level, enrolled, document_id) => {
+  return pool.query(
+  'UPDATE enrollment SET student_id = $1, course = $2, year_level = $3, enrolled = $4, document_id = $5 WHERE id = $6',
+  [student_id, course, year_level, enrolled, document_id, id]
+);
+}
