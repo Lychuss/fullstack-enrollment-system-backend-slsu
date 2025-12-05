@@ -50,24 +50,19 @@ export const checkEmail = (email) => {
 export const enrollStudent = (user) => {
   // Execute a parameterized SQL INSERT query to prevent SQL injection
 
-  const query = `INSERT INTO student VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+  const query = `INSERT INTO enrollment  (student_id, course, date_enrolled, year_level, enrolled, document_id)
+   VALUES ($1, $2, $3, $4, $5, $6)`;
 
-  const admin = [
-    user.student_id,
-    user.first_name,
-    user.last_name,
-    user.gender,
-    user.dob,
-    user.address,
-    user.contact,
-    user.course,
-    user.year_level,
-    user.date_enrolled,
-    user.username,
-    user.password
+  const enroll = [
+        user.student_id,
+        user.course,
+        user.date_enrolled,
+        user.year_level,
+        user.enrolled,
+        user.document_id
   ];
 
-  return pool.query(query, admin);
+  return pool.query(query, enroll);
 };
 
 export const getDataStudent = () => {
@@ -80,5 +75,12 @@ export const updateData = (id, student_id, course, year_level, enrolled, documen
   return pool.query(
   'UPDATE enrollment SET student_id = $1, course = $2, year_level = $3, enrolled = $4, document_id = $5 WHERE id = $6',
   [student_id, course, year_level, enrolled, document_id, id]
+);
+}
+
+export const deleteData = (id) => {
+  return pool.query(
+  'DELETE FROM enrollment WHERE id = $1',
+  [id]
 );
 }

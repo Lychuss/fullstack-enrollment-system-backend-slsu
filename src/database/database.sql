@@ -61,7 +61,17 @@ INSERT INTO student (
 (1002, 'Maria', 'Santos', 'Female', '2003-08-25', 'Quezon City, PH', 923456789, 'BSCS', 2, '2025-06-12', 'marias', 'mypassword'),
 (1003, 'Carlos', 'Dela Cruz', 'Male', '2002-12-01', 'Cavite, PH', 934567890, 'BSIS', 3, '2025-06-15', 'carlosdc', 'qwerty123'),
 (1004, 'Jenna', 'Lopez', 'Female', '2004-02-10', 'Laguna, PH', 945678901, 'BSIT', 1, '2025-06-18', 'jennal', 'abc12345'),
-(1005, 'Patrick', 'Torres', 'Male', '2003-03-07', 'Bulacan, PH', 956789012, 'BSCS', 4, '2025-06-20', 'patrickt', 'securepass');
+(1005, 'Patrick', 'Torres', 'Male', '2003-03-07', 'Bulacan, PH', 956789012, 'BSCS', 4, '2025-06-20', 'patrickt', 'securepass'),
+(1006, 'Angela', 'Villanueva', 'Female', '2004-11-03', 'Batangas, PH', 967890123, 'BSHM', 2, '2025-06-22', 'angelav', 'pass7890'),
+(1007, 'Mark', 'Fernandez', 'Male', '2002-07-19', 'Rizal, PH', 978901234, 'BSBA', 3, '2025-06-25', 'markf', 'mypwd456'),
+(1008, 'Elaine', 'Ramos', 'Female', '2003-09-14', 'Quezon Province, PH', 989012345, 'BSA', 1, '2025-06-27', 'elainer', 'pw123456'),
+(1009, 'Joshua', 'Mendoza', 'Male', '2004-01-30', 'Pasig, PH', 990123456, 'BSIT', 2, '2025-06-29', 'joshm', 'passmendoza'),
+(1010, 'Faith', 'Navarro', 'Female', '2003-04-22', 'Mandaluyong, PH', 901234567, 'BSCS', 1, '2025-07-01', 'faithn', 'faithpass'),
+(1011, 'Kevin', 'Gomez', 'Male', '2002-10-17', 'Parañaque, PH', 912345679, 'BSA', 4, '2025-07-03', 'keving', 'k3vinpass'),
+(1012, 'Sophia', 'Lorenzo', 'Female', '2004-06-08', 'Taguig, PH', 923456780, 'BSHM', 3, '2025-07-05', 'sophial', 'lorenzo123'),
+(1013, 'Nathan', 'Garcia', 'Male', '2003-05-15', 'Caloocan, PH', 934567881, 'BSBA', 2, '2025-07-07', 'nathang', 'garciapass'),
+(1014, 'Isabella', 'Cruz', 'Female', '2004-03-29', 'Las Piñas, PH', 945678902, 'BSCS', 1, '2025-07-10', 'isabellac', 'cruzpass'),
+(1015, 'Leo', 'Abad', 'Male', '2002-11-25', 'Antipolo, PH', 956789013, 'BSIT', 4, '2025-07-12', 'leoa', 'abad1234');
 
 INSERT INTO documents (
     document_id, form_137, birth_certi, notary, exam

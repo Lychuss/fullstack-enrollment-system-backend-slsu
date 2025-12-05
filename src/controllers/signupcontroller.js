@@ -28,7 +28,7 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
 
     // If the email is already registered, send a 409 Conflict response
     if (!emailAvailable) {
-      return res.status(409).json({ message: 'You already have an account!' });
+      return res.status(409).json({ message: 'You already have an account!', success: false });
     }
 
     // Step 2: Hash the user's password before saving to the database for security
@@ -42,18 +42,18 @@ signupController.post('/enrollment/auth/signup', async (req, res) => {
 
     // Step 4: Check if the insert operation affected one row — meaning the signup was successful
     if (data.rowCount === 1) {
-      return res.status(200).json({ message: 'You have signed up successfully!' });
+      return res.status(200).json({ message: 'You have signed up successfully!', success: true });
     }
 
     // If the insert failed (no row affected), send an internal server error response
-    return res.status(500).json({ message: 'Failed to create account. Please try again.' });
+    return res.status(500).json({ message: 'Failed to create account. Please try again.', success: false });
     
   } catch (err) {
     // Step 5: Catch and log any unexpected errors (e.g., database issues)
     console.error('Signup error:', err);
 
     // Send a 500 error with the error message for debugging (avoid exposing sensitive info in production)
-    return res.status(500).json({ message: 'Server error', error: err.message });
+    return res.status(500).json({ message: 'Server error', error: err.message, success: false });
   }
 });
 
